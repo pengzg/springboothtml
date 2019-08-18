@@ -1,0 +1,78 @@
+<div class="setting_panel panel-default">
+	<div class="panel-heading text-left">
+		<div class="setting_nav">
+			<ul>
+				<li><a href="">电子券列表</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="search-filter-box">
+		<div>
+			<label>关键字<span>:</span></label>
+			<input type="text" placeholder="商品名称，会员" ng-model="searchKey">
+			<label>购买类型<span>:</span></label>
+			<select ng-model="searchParam.tm_buy_type" >
+				<option ng-repeat="x in buyList" value="{{x.bd_code}}">{{x.bd_name}}</option>
+			</select>
+			<label>使用状态<span>:</span></label>
+			<select ng-model="searchParam.tm_use_state" >
+				<option ng-repeat="x in useStateList" value="{{x.bd_code}}">{{x.bd_name}}</option>
+			</select>
+		</div>
+		<div>
+			<a class="btn btn-success" style="margin-left:80px;"  ng-click="doSearch();" ><i class="glyphicon glyphicon-filter"></i> 筛选</a>
+			<a class="btn btn-default" ng-click="searchKey='';doSearch();" style="text-shadow: none !important; color: #333 !important;"><i class="icon icon-eraser"></i> 清空</a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default"
+					style="border: 0; border-radius: 0;">
+					<div class="panel-heading f14"
+						style="background-color: #fff; border: 1px solid #ddd; border-bottom: 0; border-radius: 0;">
+						<i class="icon icon-list"></i> 共{{pager.total}}条记录
+					</div>
+
+					<table class="table table3 table-bordered table-hover user_table">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>商品名称</th>
+								<th>经销商</th>
+								<th>购买类型</th>
+								<th>有效期</th>
+								<th>可用/总数</th>
+								<th>会员</th>
+								<th>是否限制</th>
+								<th>使用状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in ticketList">
+								<td class="text-center f14">{{pager.rows * (pager.page -
+									1)+ $index+1}}</td>
+								<td class="text-center f14">{{x.tm_productid_nameref}}</td>
+								<td class="text-center f14">{{x.tm_shopid_branchname}}</td>
+								<td class="text-center f14">{{x.tm_buy_type_nameref}}</td>
+								<td class="text-center f14">{{x.tm_valid_startdate}}至<br>{{x.tm_valid_enddate}}</td>
+								<td class="text-center f14">{{x.tm_available_num}}/{{x.tm_total_num}}</td>
+								<td class="text-center f14">{{x.tm_memberid_nameref}}</td>
+								<td class="text-center f14">
+									<span ng-if="x.tm_limit_is=='Y'">限制</span>
+									<span ng-if="x.tm_limit_is=='N'">不限制</span>
+								</td>
+								<td class="text-center f14">{{x.tm_use_state_nameref}}</td>
+								<td class="text-center f14">
+									<a class="common_detail" title="查看核销记录" ng-click="goTicketV(x);"></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<tm-pagination conf="pager" search-param="searchParam"></tm-pagination>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
