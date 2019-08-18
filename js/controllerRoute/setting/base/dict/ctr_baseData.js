@@ -113,10 +113,11 @@ tempApp.controller('ctr_dictManage', function($scope, http,EzConfirm,$compile,me
 	/**
 	 * 查询字典项明细
 	 */
+	$scope.dataPager = {'rows':100, 'page':1, 'order':'ASC', 'sort':"bd_order"}
 	$scope.queryTree = function(){
 		messageFactory.showLoading();
 		var success = function(result){
-			$scope.dictDetailList = result.data;
+			$scope.dictDetailList = result.data.rows;
 			messageFactory.closeLoading();
 			
 			//query($scope.dictDetailList);
@@ -125,8 +126,8 @@ tempApp.controller('ctr_dictManage', function($scope, http,EzConfirm,$compile,me
 			messageFactory.closeLoading();
 			messageFactory.showMessage('error',result.desc);
 		}
-		var url =  '/admin/base/baseDataControl/queryBaseDataDetailTree.action';
-		http.post(url,{bd_datatypeid:$scope.typeid},success,error);
+		var url =  '/admin/base/baseDataControl/dataGrid.action';
+		http.post(url,$.extend({bd_datatypeid:$scope.typeid}, $scope.dataPager),success,error);
 	}
 	
 	/**
