@@ -34,7 +34,7 @@ tempApp.controller('ctr_dictManage', function($scope, http,EzConfirm,$compile,me
 			messageFactory.showMessage('error',result.desc);
 		}
 		var url =  '/admin/base/baseDataTypeControl/dataGrid.action';
-		http.post(url,$.extend({'bdt_status':1},$scope.pager,$scope.searchParam),success,error);
+		http.post(url,$.extend({'bdt_state':1},$scope.pager,$scope.searchParam),success,error);
 	}
 	
 	/**
