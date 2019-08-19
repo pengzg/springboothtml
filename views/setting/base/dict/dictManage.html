@@ -82,7 +82,7 @@
 							<td style="width:10%;" class="colorCenter">{{$index+1}}</td>
 							<td style="width:20%;" class="colorCenter">{{x.bd_code}}</td>
 							<td style="width:35%;" class="colorCenter">{{x.bd_name}}</td>
-							<td style="width:15%;" class="colorCenter">{{x.bd_status}}</td>
+							<td style="width:15%;" class="colorCenter">{{x.bd_state}}</td>
 							<td style="width:20%;" class="colorCenter">
 								<a class="common_btns common_edit" ng-click="toEdit(x.bd_id)" title="编辑"></a>
 								<a class="common_btns common_delete" ng-click="toDelete(x.bd_id)" title="删除"></a>
@@ -166,7 +166,7 @@
 							<span class="f14">状态：</span>
 						</div>
 						<div class="zk_controlInput" style=" width: 150px;">
-							<zk-control-group htmlid="bs_is_negative" ng-model="vo.bd_status"
+							<zk-control-group htmlid="bs_is_negative" ng-model="vo.bd_state"
 											data-option='[{"0":"禁用"},{"1":"启用"}]'></zk-control-group>
 						</div>
 					</div>
